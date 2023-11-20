@@ -7,3 +7,4 @@ distance.txt
 led.txt
 pir.txt
 relay.txt
+thingsboard.txt
