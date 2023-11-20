@@ -1,0 +1,158 @@
+1.	Write a Python script to sort (ascending and descending) a dictionary by value
+
+def sortByValue(d, ascending=True):
+    sortedValues = sorted(d.items(), key=lambda x: x[1],reverse=not ascending)
+    di = {k:v for k,v in sortedValues}
+    
+    return di
+
+d = {'apple': 5, 'banana': 2, 'orange': 8, 'grapes': 3, 'kiwi': 1}
+print("Ascending Order: ",sortByValue(d))
+print()
+print("Descending Order: ",sortByValue(d,ascending=False))
+
+
+2.	Write a Python Program to generate a temperature profile 
+dictionary (values in range:30 to 100)for ten days randomly 
+(from august 1 to august 31)  and check whether august 10 data 
+exist in a dictionary or not. (Key=date,value=temperate value)
+
+import random
+
+def generateTempProfile():
+    dates = [f"August {day}" for day in range(1, 32)]
+    random_dates = random.sample(dates, 10)
+
+    profile = {}
+    for date in random_dates:
+        temperature = random.randint(30, 100)
+        profile[date] = temperature
+    return profile
+
+def august10(profile):
+    check = "August 10"
+    if check in profile:
+        print()
+        print(f"Temperature data for {check} exists in the dictionary.")
+        print()
+        print(f"{check} temperature: {profile[check]}")
+    else:
+        print()
+        print(f"Temperature data for {check} does not exist in the dictionary.")
+
+profile = generateTempProfile()
+print("Temperature Profile:",profile)
+august10(profile)
+
+
+3.	In program 2, find the count of temperature 30,40 in the dictionary. 
+
+def countTemp(profile):
+    count_30 = 0
+    count_40 = 0
+    for temperature in profile.values():
+        if temperature == 30:
+            count_30 += 1
+        elif temperature == 40:
+            count_40 += 1
+    
+    return count_30, count_40
+
+profile = generate_temperature_profile()
+print("Temperature Profile: ",profile)
+print()
+
+count_30, count_40 = countTemp(profile)
+print(f"Count of temperature 30: {count_30}")
+print()
+print(f"Count of temperature 40: {count_40}")
+
+4.	Repeat the program 2 for July month and write a python program 
+to concatenate the two dictionaries into one dictionary named July_aug_temp.
+
+import random
+
+def generateTempProfile(month):
+    dates = [f"{month} {day}" for day in range(1, 32)]
+    random_dates = random.sample(dates, 10)
+
+    temperature_profile = {}
+    for date in random_dates:
+        temperature = random.randint(30, 100)
+        temperature_profile[date] = temperature
+    return temperature_profile
+
+
+july = generateTempProfile("July")
+print("July Temperature Profile: ",july)
+
+august = generateTempProfile("August")
+print("\nAugust Temperature Profile: ",august)
+
+julyPlusAugust = {**july, **august}
+print("\nJuly-August Temperature Profile: ",julyPlusAugust)
+
+5.	Write a Python Program to multiply all the items in the 
+dictionary “July_aug_temp”  which is generated in program 4 and 
+find average temperate for the two months.
+
+def multiply_values(d):
+    result = 1
+    for value in d.values():
+        result *= value
+    return result
+
+def calculate_average(d1, d2):
+    totalTemp = sum(d1.values()) + sum(d2.values())
+    totalDays = len(d1) + len(d2)
+    return totalTemp / totalDays
+
+result = multiply_values(julyPlusAugust)
+print(f"Result of multiplying all items in the dictionary: {result}")
+
+averageTemp = calculate_average(july, august)
+print(f"\nAverage temperature for July and August: {averageTemp:.2f}")
+
+
+1. Write a python program, that repeatedly asks the user to enter product names and prices. 
+Store all of them in a dictionary whose keys are product names and values are prices. 
+And also write a code to search an item from the dictionary. 
+
+def add_product(products_dict):
+    product_name = input("Enter the product name (or 'q' to quit): ")
+    while product_name.lower() != 'q':
+        product_price = float(input("Enter the product price: "))
+        products_dict[product_name] = product_price
+        product_name = input("Enter the product name (or 'q' to quit): ")
+
+def search_product(products_dict):
+    search_item = input("Enter the product name to search: ")
+    if search_item in products_dict:
+        print()
+        print(f"{search_item} found.")
+        print()
+        print(f"Price of {search_item}: {products_dict[search_item]}")
+    else:
+        print()
+        print(f"{search_item} is not found in the dictionary.")
+
+products = {}
+add_product(products)
+
+print(products)
+
+search_product(products)
+
+2. Write a Python program to get the maximum and minimum value in a dictionary. 
+
+def maxVal(d):
+    return max(d.values())
+
+def minVal(d):
+    return min(d.values())
+
+d = {'apple': 5, 'banana': 2, 'orange': 8, 'grapes': 3, 'kiwi': 1}
+
+print("Maximum value in the dictionary:", maxVal(d))
+print()
+print("Minimum value in the dictionary:", minVal(d))
