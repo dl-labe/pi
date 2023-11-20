@@ -3,6 +3,7 @@ Interrupts.txt
 Resistive.txt
 Stepper.txt
 Switch.txt
+dict.txt
 distance.txt
 led.txt
 pir.txt
