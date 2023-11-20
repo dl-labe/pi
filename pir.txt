@@ -1,0 +1,29 @@
+#Programming on PIR sensor
+
+import RPi.GPIO as GPIO
+from time import sleep
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+PIR = 18
+LED = 17
+GPIO.setup(PIR,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(PIR,GPIO.OUT)
+while True:
+    try:
+        if GPIO.input(PIR):
+            GPIO.output(LED,True)
+            print("Intruder Detected")
+        else:
+            GPIO.output(LED,False)
+            print("No Intruder Detected")
+        sleep(2)
+    except KeyboardInterrupt:
+        break
+GPIO.cleanup()
+
+
+
+
+
+
+

@@ -1,0 +1,29 @@
+#Programming on Ultrasonic Sensors
+
+import RPi.GPIO as GPIO
+import time
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+TRIG = 18
+ECHO = 17
+GPIO.setup(ECHO,GPIO.IN)
+GPIO.setup(TRIG,GPIO.OUT)
+def distance():
+    GPIO.output(TRIG,True)
+    time.sleep(0.00001)
+    GPIO.output(TRIG,False)
+    while GPIO.input(ECHO) == 0:
+        Pulse_Start = time.time()
+    while GPIO.input(ECHO) == 1:
+        Pluse_End = time.time()
+    Total_Distance = ((Pluse_End - Pulse_Start) * 17150)
+    Distance = round(Duration/2,2)
+    return Distance
+while True:
+    try:
+        dist = distance()
+        print(f"Distance: {dist}cm")
+        sleep(0.5)
+    except KeyboardInterrupt:
+        break
+GPIO.cleanup()

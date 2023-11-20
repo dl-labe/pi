@@ -1,0 +1,34 @@
+#Programming on Interrupts
+
+import RPi.GPIO as GPIO
+from time import sleep
+Led = 18
+Button1 = 17
+Button2 = 24
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(Led,GPIO.OUT)
+GPIO.setup(Button1,GPIO.IN,pull_up_down=GPIO.PUD_DOWN)
+GPIO.setup(Button2,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+
+def toggleLEDon():
+    GPIO.output(Relay,True)
+def toggleLEDoff():
+    GPIO.output(Relay,False)
+
+while True:
+    try :
+        GPIO.add_event_detect(Button1,GPIO.RISING,callback=toggleLEDon,bouncetime=200)
+	GPIO.add_event_detect(Button2,GPIO.FALLING,callback=toggleLEDoff,bouncetime=200)
+
+    except KeyboardInterrupt:
+        break
+GPIO.cleanup()
+
+
+
+
+
+
+
+

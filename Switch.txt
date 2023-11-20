@@ -1,0 +1,32 @@
+#Programming on Switch
+
+import RPi.GPIO as GPIO
+from time import sleep
+Led = 18
+Button = 17
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(Led,GPIO.OUT)
+GPIO.setup(Button,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+status = 0
+
+def toggleLED():
+    if status%2 == 0:
+        GPIO.output(Relay,False)
+    else:
+        GPIO.output(Relay,True)
+    status += 1
+    
+while True:
+    try :
+        GPIO.add_event_detect(Button,GPIO.FALLING,callback=toggleLED,bouncetime=200)
+    except KeyboardInterrupt:
+        break
+GPIO.cleanup()
+
+
+
+
+
+
+

@@ -1,0 +1,27 @@
+    
+#LED Blinking and Brightness Control
+
+import RPi.GPIO as GPIO
+from time import sleep
+Led = 18
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(Led,GPIO.OUT)
+Done = False
+Led_PWM = GPIO.PWM(Led,100)
+Led_PWM.start(0)
+def BlinkLed():
+    for i in range(10):
+        GPIO.output(Led,True)
+        sleep(1)
+        GPIO.output(Led,False)
+
+while not Done:
+duty = int(input("Enter PWM: ")
+if duty < 100:
+    Led_PWM.ChangeDutyCycle(duty)
+    BlinkLed()
+else:
+    Done = True
+
+GPIO.cleanup()
