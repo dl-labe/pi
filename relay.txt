@@ -1,5 +1,5 @@
 #Switching a High-Power DC Device
-#Transistor 2N3904 1N4001 diode
+#Transistor 2N3904 (emitter base collector) 1N4001 diode
 import RPi.GPIO as GPIO
 from time import sleep
 Relay = 18
