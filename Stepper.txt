@@ -1,4 +1,5 @@
-#Programming on Stepper Motor
+#Programming on Stepper Motor 
+#ULN2803
 
 import RPi.GPIO as GPIO
 from time import sleep
